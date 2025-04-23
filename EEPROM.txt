@@ -1,0 +1,23 @@
+ * EEPROM address 0000-2431 is used for Blinker
+
+ * EEPROM address 2560-2650 is used for User Settings(every information is 29 Bytes mostly)
+ >>> EEPROM address 2560-2589 is used for SSID
+ >>> EEPROM address 2590-2619 is used for Password
+ >>> EEPROM address 2620-2649 is used for Blinker Auth
+
+ * EEPROM address 2700-2899 is used for User Keys(every key is 6 Bytes)
+ >>> EEPROM address 2700-2709 is used for User Key 1
+ >>> EEPROM address 2710-2719 is used for User Key 2
+ ...
+ >>> EEPROM address 2890-2899 is used for User Key 20
+
+ * EEPROM address 3100-3299 is used for IC UIDs(every UID is 6 Bytes)
+ >>> EEPROM address 3100-3109 is used for IC Key 1
+ >>> EEPROM address 3110-3119 is used for IC Key 2
+ ...
+ >>> EEPROM address 3290-3299 is used for IC Key 20
+
+ * EEPROM address 3500-4000 is used for Counters
+ >>> EEPROM address 3500-3519 is used for user key Counter(1 is used,0 is unused)
+ >>> EEPROM address 3520-3539 is used for IC key Counter(1 is used,0 is unused)
+ >>> EEPROM address 4000 is used for finger number

@@ -1,0 +1,47 @@
+{
+    "arduino.path": "D:/Program Files (x86)/Arduino", //注意，这里填入你自己Arduino安装路径，也就是前面配置的Path路径
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "editor.insertSpaces": true,
+    "files.autoGuessEncoding": true,
+    "arduino.logLevel": "info",
+    "explorer.confirmDelete": false,
+    "editor.detectIndentation": false,
+    "cSpell.words": [
+        "Adafruit",
+        "citycode",
+        "cityid",
+        "dowebok",
+        "EEPROM",
+        "lbeep",
+        "mfrc",
+        "MFRC",
+        "Mifare",
+        "MIFARE",
+        "mqtt",
+        "ncen",
+        "oled",
+        "oleddisplay",
+        "PICC",
+        "pinouts",
+        "pswd",
+        "Pura",
+        "RFID",
+        "successed",
+        "wifiid",
+        "wifipass",
+        "XBMP"
+    ],
+    "files.associations": {
+        "random": "cpp",
+        "sstream": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "cstddef": "cpp",
+        "deque": "cpp",
+        "vector": "cpp",
+        "*.tcc": "cpp",
+        "unordered_map": "cpp",
+        "initializer_list": "cpp"
+    }
+}
