@@ -161,6 +161,10 @@ String get_pswd()
 }
 int Key_verify(String str) // 密码验证
 {
+    if(str == "cancel")
+    {
+        return -1; // 取消操作
+    }
     flag = 0; // 重置标志位
     for (int i = 0; i < 20; i++)
     {
@@ -177,7 +181,7 @@ int Key_verify(String str) // 密码验证
                 Serial.print("Key is correct!  ID = ");
                 Serial.println(i); // 打印密码标识
                 return 1;          //! 密码正确
-            }
+            } 
         }
     }
     Serial.println("Key is incorrect!"); //! 密码错误
@@ -265,6 +269,10 @@ void Key_set() // 密码设置
             case 0:
                 flag = 2; //! 请输入新密码
                 pswd0 = get_pswd();
+                if(pswd0 == "cancel")
+                {
+                    return; // 取消操作
+                }
                 Serial.print("New password: ");
                 Serial.println(pswd0); // 打印密码
                 a = 1;

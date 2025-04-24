@@ -66,6 +66,7 @@ void loop()
     String uid = RFID_scan(); // 用于存储UID的字符串
     if (key == '#' && page == 1)
     {
+        flag = 0;
         beep(1);
         Open_door(Key_verify(get_pswd()), 500); // 获取并验证密码
         // Serial.print("Key Pressed : ");
@@ -86,13 +87,13 @@ void loop()
             else
             {
                 Serial.println("Admin password is incorrect!"); //! 密码错误
-                beep(3); // 蜂鸣器响
                 u8g2.clearBuffer();
-                u8g2.drawXBMP(73, 18, 16, 16, str39); // 密
-                u8g2.drawXBMP(89, 18, 16, 16, str40); // 码
+                u8g2.drawXBMP(25, 20, 16, 16, str39); // 密
+                u8g2.drawXBMP(41, 20, 16, 16, str40); // 码
                 u8g2.drawXBMP(57, 20, 16, 16, str5); // 错
                 u8g2.drawXBMP(73, 20, 16, 16, str6); // 误
                 u8g2.sendBuffer(); // 开显示
+                beep(3); // 蜂鸣器响
                 delay(1000);
             }
         }

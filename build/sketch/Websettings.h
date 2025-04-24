@@ -3,7 +3,7 @@
 #include <DNSServer.h>
 #include <WebServer.h>
 const char *AP_NAME = "ESP32WiFiAP"; // Web配网模式下的AP-wifi名字
-const char *AP_PSWD = "12345678"; // Web配网模式下的AP-wifi密码
+const char *AP_PSWD = "12345678";    // Web配网模式下的AP-wifi密码
 
 // 暂时存储wifi账号密码
 char sta_ssid[32] = {0};
@@ -121,7 +121,7 @@ void handleRootPost()
     else
     { // 没有参数
         Serial.println("error, not found ssid");
-        server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入WiFi名称"); // 返回错误页面
+        server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入WiFi名称，若不修改请输入“0000”"); // 返回错误页面
         return;
     }
     // 密码与账号同理
@@ -134,7 +134,7 @@ void handleRootPost()
     else
     {
         Serial.println("error, not found password");
-        server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入WiFi密码");
+        server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入WiFi密码，若不修改请输入“0000”");
         return;
     }
 
@@ -147,16 +147,25 @@ void handleRootPost()
     else
     {
         Serial.println("error, not found auth code");
-        server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入Blinker Auth Code");
+        server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入Blinker Auth Code，若不修改请输入“0000”");
         return;
     }
     wifiid = sta_ssid;
     wifipass = sta_password;
     auth = sta_auth;
     EEPROM.begin(4096);
-    set_string(2560, wifiid); // 保存账号到EEPROM
-    set_string(2590, wifipass); // 保存密码到EEPROM
-    set_string(2620, auth); // 保存auth到EEPROM
+    if (wifiid != "0000")
+    {
+        set_string(2560, wifiid); // 保存账号到EEPROM
+    }
+    if (wifipass != "0000")
+    {
+        set_string(2590, wifipass); // 保存密码到EEPROM
+    }
+    if (auth != "0000")
+    {
+        set_string(2620, auth); // 保存auth到EEPROM
+    }
 
     server.send(200, "text/html", "<meta charset='UTF-8'><h1>保存成功，ESP32重启中...</h1>"); // 返回保存成功页面
     delay(2000);
@@ -175,4 +184,3 @@ void initWebServer(void)
     server.begin();                            // 启动WebServer
     Serial.println("WebServer started!");
 }
-

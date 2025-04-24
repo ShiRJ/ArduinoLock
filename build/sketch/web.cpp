@@ -16,7 +16,7 @@ void setWiFi()
     u8g2.clearBuffer();
     u8g2.setFont(u8g2_font_ncenB08_tr);
     u8g2.drawStr(0, 15, "WiFi Configuration");
-    u8g2.drawStr(0, 30, "Press # to cancel");
+    u8g2.drawStr(0, 30, "Press [#] to cancel");
     u8g2.drawStr(0, 45, "SSID: ");
     u8g2.setCursor(35, 45); // 设置显示位置
     u8g2.print(AP_NAME);

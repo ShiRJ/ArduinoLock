@@ -51,8 +51,6 @@ void Add_FR()
                     u8g2.drawXBMP(89, 18, 16, 16, str3);
                     u8g2.sendBuffer(); // 开显示
                     beep(1);           // 蜂鸣器响
-                    while (digitalRead(34) == 1)
-                        ; // 等待指纹松开
                     delay(1000);
                 }
                 else
@@ -96,8 +94,6 @@ void Add_FR()
                     i = 0;
                     processnum = 2; // 跳到第三步
                     beep(1);        // 蜂鸣器响
-                    while (digitalRead(34) == 1)
-                        ; // 等待指纹松开
                     delay(1000);
                 }
                 else
