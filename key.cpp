@@ -186,10 +186,10 @@ int Key_verify(String str) // 密码验证
     }
     Serial.println("Key is incorrect!"); //! 密码错误
     u8g2.clearBuffer();
-    u8g2.drawXBMP(25, 20, 16, 16, str39); // 密
-    u8g2.drawXBMP(41, 20, 16, 16, str40); // 码
-    u8g2.drawXBMP(57, 20, 16, 16, str5); // 错
-    u8g2.drawXBMP(73, 20, 16, 16, str6); // 误
+    u8g2.drawXBMP(33, 20, 16, 16, str39); // 密
+    u8g2.drawXBMP(49, 20, 16, 16, str40); // 码
+    u8g2.drawXBMP(65, 20, 16, 16, str5); // 错
+    u8g2.drawXBMP(81, 20, 16, 16, str6); // 误
     u8g2.sendBuffer(); // 开显示
     beep(3);                             // 蜂鸣器响
     err++; // 错误次数加1
@@ -291,10 +291,10 @@ void Key_set() // 密码设置
                 {
                     Serial.println("New password is incorrect!"); //! 输入错误
                     u8g2.clearBuffer();
-                    u8g2.drawXBMP(25, 20, 16, 16, str37); // 输
-                    u8g2.drawXBMP(41, 20, 16, 16, str38); // 入
-                    u8g2.drawXBMP(57, 20, 16, 16, str5); // 错
-                    u8g2.drawXBMP(73, 20, 16, 16, str6); // 误
+                    u8g2.drawXBMP(33, 20, 16, 16, str37); // 输
+                    u8g2.drawXBMP(49, 20, 16, 16, str38); // 入
+                    u8g2.drawXBMP(65, 20, 16, 16, str5); // 错
+                    u8g2.drawXBMP(81, 20, 16, 16, str6); // 误
                     u8g2.sendBuffer();                   // 开显示
                     delay(1000);
                     beep(3);
@@ -312,10 +312,10 @@ void Key_set() // 密码设置
                 Serial.println(id); // 打印密码标识
 
                 u8g2.clearBuffer(); //! 添加成功
-                u8g2.drawXBMP(25, 20, 16, 16, str52); // 添加成功
-                u8g2.drawXBMP(41, 20, 16, 16, str53); 
-                u8g2.drawXBMP(57, 20, 16, 16, str13);  
-                u8g2.drawXBMP(73, 20, 16, 16, str14);  
+                u8g2.drawXBMP(33, 20, 16, 16, str52); // 添加成功
+                u8g2.drawXBMP(49, 20, 16, 16, str53); 
+                u8g2.drawXBMP(65, 20, 16, 16, str13);  
+                u8g2.drawXBMP(81, 20, 16, 16, str14);  
                 u8g2.sendBuffer();                   // 开显示
                 beep(2);                             // 蜂鸣器响
                 delay(1000);
@@ -345,10 +345,10 @@ void Key_clear()
     Serial.println("key cleared!  ID = ");
     Serial.print(id); // 打印密码标识
     u8g2.clearBuffer(); //! 删除成功
-    u8g2.drawXBMP(25, 20, 16, 16, str50); // 删除成功
-    u8g2.drawXBMP(41, 20, 16, 16, str51);
-    u8g2.drawXBMP(57, 20, 16, 16, str13);
-    u8g2.drawXBMP(73, 20, 16, 16, str14);
+    u8g2.drawXBMP(33, 20, 16, 16, str50); // 删除成功
+    u8g2.drawXBMP(49, 20, 16, 16, str51);
+    u8g2.drawXBMP(65, 20, 16, 16, str13);
+    u8g2.drawXBMP(81, 20, 16, 16, str14);
     u8g2.sendBuffer(); // 开显示
     beep(2);         // 蜂鸣器响
 

@@ -23,10 +23,10 @@ void Add_FR()
             i++;
             //! 请按手指
             u8g2.clearBuffer();
-            u8g2.drawXBMP(25, 24, 16, 16, str7);  // 请
-            u8g2.drawXBMP(41, 24, 16, 16, str15); // 按
-            u8g2.drawXBMP(57, 24, 16, 16, str10); // 手
-            u8g2.drawXBMP(73, 24, 16, 16, str3);  // 指
+            u8g2.drawXBMP(33, 24, 16, 16, str7);  // 请
+            u8g2.drawXBMP(49, 24, 16, 16, str15); // 按
+            u8g2.drawXBMP(65, 24, 16, 16, str10); // 手
+            u8g2.drawXBMP(81, 24, 16, 16, str3);  // 指
             u8g2.sendBuffer();                    // 开显示
             beep(1);                              // 蜂鸣器响
             Serial.println("Please Press...");
@@ -118,10 +118,10 @@ void Add_FR()
                 // 创建模板失败
                 Serial.println("Fail");
                 u8g2.clearBuffer();                   //! 添加失败
-                u8g2.drawXBMP(25, 20, 16, 16, str52); // 添加失败
-                u8g2.drawXBMP(41, 20, 16, 16, str53);
-                u8g2.drawXBMP(57, 20, 16, 16, str16);
-                u8g2.drawXBMP(73, 20, 16, 16, str17);
+                u8g2.drawXBMP(33, 20, 16, 16, str52); // 添加失败
+                u8g2.drawXBMP(49, 20, 16, 16, str53);
+                u8g2.drawXBMP(65, 20, 16, 16, str16);
+                u8g2.drawXBMP(81, 20, 16, 16, str17);
                 u8g2.sendBuffer(); // 开显示
                 delay(1000);
                 i = 0;
@@ -148,10 +148,10 @@ void Add_FR()
                 Serial.println(ID_NUM);
                 Serial.println(" ");
                 u8g2.clearBuffer();                   //! 添加成功
-                u8g2.drawXBMP(25, 20, 16, 16, str52); // 添加成功
-                u8g2.drawXBMP(41, 20, 16, 16, str53);
-                u8g2.drawXBMP(57, 20, 16, 16, str13);
-                u8g2.drawXBMP(73, 20, 16, 16, str14);
+                u8g2.drawXBMP(33, 20, 16, 16, str52); // 添加成功
+                u8g2.drawXBMP(49, 20, 16, 16, str53);
+                u8g2.drawXBMP(65, 20, 16, 16, str13);
+                u8g2.drawXBMP(81, 20, 16, 16, str14);
                 u8g2.sendBuffer(); // 开显示
                 beep(2);           // 蜂鸣器响
                 delay(1000);
@@ -168,10 +168,10 @@ void Add_FR()
         {
             Serial.println("Timeout !!!");
             u8g2.clearBuffer();
-            u8g2.drawXBMP(25, 24, 16, 16, str11); // 识
-            u8g2.drawXBMP(41, 24, 16, 16, str12); // 别
-            u8g2.drawXBMP(57, 24, 16, 16, str20); // 超
-            u8g2.drawXBMP(73, 24, 16, 16, str21); // 时
+            u8g2.drawXBMP(33, 24, 16, 16, str11); // 识
+            u8g2.drawXBMP(49, 24, 16, 16, str12); // 别
+            u8g2.drawXBMP(65, 24, 16, 16, str20); // 超
+            u8g2.drawXBMP(81, 24, 16, 16, str21); // 时
             u8g2.sendBuffer();                    // 开显示
             lbeep(1000);
             break;
@@ -226,10 +226,10 @@ int Press_FR()
                     Serial.println(" ");
 
                     u8g2.clearBuffer();
-                    u8g2.drawXBMP(25, 20, 16, 16, str3); // 指
-                    u8g2.drawXBMP(41, 20, 16, 16, str4); // 纹
-                    u8g2.drawXBMP(57, 20, 16, 16, str5); // 错
-                    u8g2.drawXBMP(73, 20, 16, 16, str6); // 误
+                    u8g2.drawXBMP(33, 20, 16, 16, str3); // 指
+                    u8g2.drawXBMP(49, 20, 16, 16, str4); // 纹
+                    u8g2.drawXBMP(65, 20, 16, 16, str5); // 错
+                    u8g2.drawXBMP(81, 20, 16, 16, str6); // 误
                     u8g2.sendBuffer();                   // 开显示
                     beep(3);
                     delay(5000);
@@ -248,10 +248,10 @@ int Press_FR()
             // 等待超时
             Serial.println("Timeout !!!");
             u8g2.clearBuffer();
-            u8g2.drawXBMP(25, 24, 16, 16, str11); // 识
-            u8g2.drawXBMP(41, 24, 16, 16, str12); // 别
-            u8g2.drawXBMP(57, 24, 16, 16, str20); // 超
-            u8g2.drawXBMP(73, 24, 16, 16, str21); // 时
+            u8g2.drawXBMP(33, 24, 16, 16, str11); // 识
+            u8g2.drawXBMP(49, 24, 16, 16, str12); // 别
+            u8g2.drawXBMP(65, 24, 16, 16, str20); // 超
+            u8g2.drawXBMP(81, 24, 16, 16, str21); // 时
             u8g2.sendBuffer();                    // 开显示
             lbeep(1000);
             Serial.println(" ");
@@ -271,10 +271,10 @@ void Delete_FR()
     EEPROM.begin(4096);
     EEPROM.write(4000, ID_NUM);           // 保存指纹ID
     EEPROM.commit();                      // 执行保存EEPROM
-    u8g2.drawXBMP(25, 20, 16, 16, str50); // 删除成功
-    u8g2.drawXBMP(41, 20, 16, 16, str51);
-    u8g2.drawXBMP(57, 20, 16, 16, str13);
-    u8g2.drawXBMP(73, 20, 16, 16, str14);
+    u8g2.drawXBMP(33, 20, 16, 16, str50); // 删除成功
+    u8g2.drawXBMP(49, 20, 16, 16, str51);
+    u8g2.drawXBMP(65, 20, 16, 16, str13);
+    u8g2.drawXBMP(81, 20, 16, 16, str14);
     u8g2.sendBuffer(); // 开显示
     delay(1000);
 }

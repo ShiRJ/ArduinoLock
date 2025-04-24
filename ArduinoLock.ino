@@ -48,31 +48,35 @@ void setup()
     Blinker.begin(auth, ssid, pswd);
     // Blinker.attachData(dataRead);
     Button1.attach(button1_callback);
-    delay(3000);
+    delay(2000);
+    lbeep(1000); // 蜂鸣器响
 }
 
 void loop()
 {
     if (err >= 5)
     {
+        Serial.println("Error times over 5, please reset the system!");
         for(int i = 300; i > 0; i--)
         {
-            Serial.println("Error times over 5, please reset the system!");
             u8g2.clearBuffer();
-            u8g2.drawXBMP(25, 20, 16, 16, str32); // 系统锁死
-            u8g2.drawXBMP(41, 20, 16, 16, str33);
-            u8g2.drawXBMP(57, 20, 16, 16, str27);
-            u8g2.drawXBMP(73, 20, 16, 16, str28);
+            u8g2.drawXBMP(33, 20, 16, 16, str32); // 系统锁死
+            u8g2.drawXBMP(49, 20, 16, 16, str33);
+            u8g2.drawXBMP(65, 20, 16, 16, str27);
+            u8g2.drawXBMP(81, 20, 16, 16, str28);
             u8g2.setCursor(4, 40); // 设置显示位置
             u8g2.print("Please wait for"); // 输出字符
             u8g2.setCursor(20, 50);         // 设置显示位置
             u8g2.print(i);                // 输出字符
-            u8g2.setCursor(40, 60);         // 设置显示位置
+            u8g2.setCursor(40, 50);         // 设置显示位置
             u8g2.print("Seconds");         // 输出字符
             u8g2.sendBuffer(); // 开显示
-            err = 0;
             delay(950); // 延时1秒
         }
+        err = 0;
+        beep(2); // 蜂鸣器响
+        delay(500)
+        lbeep(1000); // 蜂鸣器响
     }
     // 串口指令读取
     if (Serial.available())
@@ -175,10 +179,10 @@ void exchange_page()
         {
             Serial.println("Admin password is incorrect!"); //! 密码错误
             u8g2.clearBuffer();
-            u8g2.drawXBMP(25, 20, 16, 16, str39); // 密
-            u8g2.drawXBMP(41, 20, 16, 16, str40); // 码
-            u8g2.drawXBMP(57, 20, 16, 16, str5);  // 错
-            u8g2.drawXBMP(73, 20, 16, 16, str6);  // 误
+            u8g2.drawXBMP(33, 20, 16, 16, str39); // 密
+            u8g2.drawXBMP(49, 20, 16, 16, str40); // 码
+            u8g2.drawXBMP(65, 20, 16, 16, str5);  // 错
+            u8g2.drawXBMP(81, 20, 16, 16, str6);  // 误
             u8g2.sendBuffer();                    // 开显示
             err++;                                // 错误次数加1
             beep(3);                              // 蜂鸣器响
