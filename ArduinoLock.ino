@@ -64,18 +64,18 @@ void loop()
             u8g2.drawXBMP(49, 20, 16, 16, str33);
             u8g2.drawXBMP(65, 20, 16, 16, str27);
             u8g2.drawXBMP(81, 20, 16, 16, str28);
-            u8g2.setCursor(4, 40); // 设置显示位置
+            u8g2.setCursor(25, 50); // 设置显示位置
             u8g2.print("Please wait for"); // 输出字符
-            u8g2.setCursor(20, 50);         // 设置显示位置
+            u8g2.setCursor(30, 60);         // 设置显示位置
             u8g2.print(i);                // 输出字符
-            u8g2.setCursor(40, 50);         // 设置显示位置
+            u8g2.setCursor(55, 60);         // 设置显示位置
             u8g2.print("Seconds");         // 输出字符
             u8g2.sendBuffer(); // 开显示
             delay(950); // 延时1秒
         }
         err = 0;
         beep(2); // 蜂鸣器响
-        delay(500)
+        delay(500);
         lbeep(1000); // 蜂鸣器响
     }
     // 串口指令读取

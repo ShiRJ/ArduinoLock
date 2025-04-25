@@ -32,6 +32,7 @@ void setWiFi()
         char key = get_key(); // 获取按键
         if (key == '#')
         {
+            beep(3);
             setWiFi_Flag = 0;
             server.stop();
             Serial.println("WiFi configuration cancelled.");

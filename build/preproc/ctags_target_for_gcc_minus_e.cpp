@@ -34,6 +34,7 @@ void setup()
     u8g2.sendBuffer();
     WiFi.mode(WIFI_MODE_STA); // 设置WiFi为STA模式
     EEPROM_Config(); // 初始化EEPROM
+    init_FR(); // 初始化指纹模块
     Key_init(); // 初始化密码标识
     RFID_init(); // 初始化RFID模块
     pinMode(34, 0x01);
@@ -48,7 +49,8 @@ void setup()
     Blinker.begin(auth, ssid, pswd);
     // Blinker.attachData(dataRead);
     Button1.attach(button1_callback);
-    delay(3000);
+    delay(2000);
+    lbeep(1000); // 蜂鸣器响
 }
 
 void loop()
@@ -56,8 +58,26 @@ void loop()
     if (err >= 5)
     {
         Serial.println("Error times over 5, please reset the system!");
-        delay(30000);
+        for(int i = 300; i > 0; i--)
+        {
+            u8g2.clearBuffer();
+            u8g2.drawXBMP(33, 20, 16, 16, str32); // 系统锁死
+            u8g2.drawXBMP(49, 20, 16, 16, str33);
+            u8g2.drawXBMP(65, 20, 16, 16, str27);
+            u8g2.drawXBMP(81, 20, 16, 16, str28);
+            u8g2.setCursor(25, 50); // 设置显示位置
+            u8g2.print("Please wait for"); // 输出字符
+            u8g2.setCursor(30, 60); // 设置显示位置
+            u8g2.print(i); // 输出字符
+            u8g2.setCursor(55, 60); // 设置显示位置
+            u8g2.print("Seconds"); // 输出字符
+            u8g2.sendBuffer(); // 开显示
+            delay(950); // 延时1秒
+        }
         err = 0;
+        beep(2); // 蜂鸣器响
+        delay(500);
+        lbeep(1000); // 蜂鸣器响
     }
     // 串口指令读取
     if (Serial.available())
@@ -74,33 +94,7 @@ void loop()
     }
     else if (key == '*')
     {
-
-        beep(1);
-        if (page == 1)
-        {
-            flag = 1; // 设置标志位
-            if (get_pswd() == admin)
-            {
-                Serial.println("Admin password is correct!");
-                page = 2; // 切换到第二个界面
-            }
-            else
-            {
-                Serial.println("Admin password is incorrect!"); //! 密码错误
-                u8g2.clearBuffer();
-                u8g2.drawXBMP(25, 20, 16, 16, str39); // 密
-                u8g2.drawXBMP(41, 20, 16, 16, str40); // 码
-                u8g2.drawXBMP(57, 20, 16, 16, str5); // 错
-                u8g2.drawXBMP(73, 20, 16, 16, str6); // 误
-                u8g2.sendBuffer(); // 开显示
-                beep(3); // 蜂鸣器响
-                delay(1000);
-            }
-        }
-        else
-        {
-            page = 1; // 切换到第一个界面
-        }
+        exchange_page(); // 切换页面
     }
     else if (key != NO_KEY && key != '#' && key != '*' && page == 1)
     {
@@ -165,6 +159,42 @@ void loop()
     oleddisplay();
 }
 
+void exchange_page()
+{
+    beep(1);
+    if (page == 1)
+    {
+        flag = 1; // 设置标志位
+        String str = get_pswd(); // 获取密码字符串
+        if (str == "cancel")
+        {
+            return; // 取消操作
+        }
+        if (str == admin)
+        {
+            Serial.println("Admin password is correct!");
+            page = 2; // 切换到第二个界面
+            err = 0; // 重置错误次数
+        }
+        else
+        {
+            Serial.println("Admin password is incorrect!"); //! 密码错误
+            u8g2.clearBuffer();
+            u8g2.drawXBMP(33, 20, 16, 16, str39); // 密
+            u8g2.drawXBMP(49, 20, 16, 16, str40); // 码
+            u8g2.drawXBMP(65, 20, 16, 16, str5); // 错
+            u8g2.drawXBMP(81, 20, 16, 16, str6); // 误
+            u8g2.sendBuffer(); // 开显示
+            err++; // 错误次数加1
+            beep(3); // 蜂鸣器响
+            delay(1000);
+        }
+    }
+    else
+    {
+        page = 1; // 切换到第一个界面
+    }
+}
 void oleddisplay()
 {
     if (page == 1)

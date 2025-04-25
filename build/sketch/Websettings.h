@@ -114,45 +114,48 @@ void handleRootPost()
     Serial.println("handleRootPost");
     if (server.hasArg("ssid"))
     { // 判断是否有账号参数
+        if(server.arg("ssid") == "")
+        {
+            Serial.println("error, not found ssid");
+            server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入WiFi账号，若不修改请输入“0000”");
+            return;
+        }
         Serial.print("got ssid:");
         strcpy(sta_ssid, server.arg("ssid").c_str()); // 将账号参数拷贝到sta_ssid中
         Serial.println(sta_ssid);
     }
-    else
-    { // 没有参数
-        Serial.println("error, not found ssid");
-        server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入WiFi名称，若不修改请输入“0000”"); // 返回错误页面
-        return;
-    }
+
     // 密码与账号同理
     if (server.hasArg("password"))
     {
+        if(server.arg("password") == "")
+        {
+            Serial.println("error, not found password");
+            server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入WiFi密码，若不修改请输入“0000”");
+            return;
+        }
         Serial.print("got password:");
         strcpy(sta_password, server.arg("password").c_str());
         Serial.println(sta_password);
     }
-    else
-    {
-        Serial.println("error, not found password");
-        server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入WiFi密码，若不修改请输入“0000”");
-        return;
-    }
+
 
     if (server.hasArg("auth"))
     {
+        if(server.arg("auth") == "")
+        {
+            Serial.println("error, not found auth");
+            server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入Blinker设备秘钥，若不修改请输入“0000”");
+            return;
+        }
         Serial.print("got Blinker Auth Code:");
         strcpy(sta_auth, server.arg("auth").c_str());
         Serial.println(sta_auth);
     }
-    else
-    {
-        Serial.println("error, not found auth code");
-        server.send(200, "text/html", "<meta charset='UTF-8'>提示：请输入Blinker Auth Code，若不修改请输入“0000”");
-        return;
-    }
-    wifiid = sta_ssid;
-    wifipass = sta_password;
-    auth = sta_auth;
+
+    wifiid = server.arg("ssid");
+    wifipass = server.arg("password");
+    auth = server.arg("auth");
     EEPROM.begin(4096);
     if (wifiid != "0000")
     {
@@ -169,6 +172,7 @@ void handleRootPost()
 
     server.send(200, "text/html", "<meta charset='UTF-8'><h1>保存成功，ESP32重启中...</h1>"); // 返回保存成功页面
     delay(2000);
+    beep(2); // 蜂鸣器响
     // 连接wifi
     // connectNewWifi();
 

@@ -135,10 +135,10 @@ char RFID_verify(String uid)
     }
     Serial.println("Card UID verification failed!"); //! 卡片错误
     u8g2.clearBuffer();
-    u8g2.drawXBMP(25, 20, 16, 16, str41); // 刷
-    u8g2.drawXBMP(41, 20, 16, 16, str42); // 卡
-    u8g2.drawXBMP(57, 20, 16, 16, str5); // 错
-    u8g2.drawXBMP(73, 20, 16, 16, str6); // 误
+    u8g2.drawXBMP(33, 20, 16, 16, str41); // 刷
+    u8g2.drawXBMP(49, 20, 16, 16, str42); // 卡
+    u8g2.drawXBMP(65, 20, 16, 16, str5); // 错
+    u8g2.drawXBMP(81, 20, 16, 16, str6); // 误
     u8g2.sendBuffer();                   // 开显示
     beep(3);
     delay(3000);
@@ -174,10 +174,10 @@ void RFID_add()
 {
     String uidStr = "";
     u8g2.clearBuffer();
-    u8g2.drawXBMP(25, 20, 16, 16, str7); // 请刷新卡
-    u8g2.drawXBMP(41, 20, 16, 16, str41);
-    u8g2.drawXBMP(57, 20, 16, 16, str56);
-    u8g2.drawXBMP(73, 20, 16, 16, str42);
+    u8g2.drawXBMP(33, 20, 16, 16, str7); // 请刷新卡
+    u8g2.drawXBMP(49, 20, 16, 16, str41);
+    u8g2.drawXBMP(65, 20, 16, 16, str56);
+    u8g2.drawXBMP(81, 20, 16, 16, str42);
     u8g2.sendBuffer();                   // 开显示
     while (uidStr == "")
     {
@@ -213,10 +213,10 @@ void RFID_add()
         Serial.println(uidStr); // 打印UID
 
         u8g2.clearBuffer();     //! 添加成功
-        u8g2.drawXBMP(25, 20, 16, 16, str52); // 添加成功
-        u8g2.drawXBMP(41, 20, 16, 16, str53);
-        u8g2.drawXBMP(57, 20, 16, 16, str13);
-        u8g2.drawXBMP(73, 20, 16, 16, str14);
+        u8g2.drawXBMP(33, 20, 16, 16, str52); // 添加成功
+        u8g2.drawXBMP(49, 20, 16, 16, str53);
+        u8g2.drawXBMP(65, 20, 16, 16, str13);
+        u8g2.drawXBMP(81, 20, 16, 16, str14);
         u8g2.sendBuffer(); // 开显示
         beep(2);           // 蜂鸣器响
         delay(1000);
@@ -245,10 +245,10 @@ void RFID_clear()
     Serial.println(id); // 打印密码标识
 
     u8g2.clearBuffer();                   //! 删除成功
-    u8g2.drawXBMP(25, 20, 16, 16, str50); // 删除成功
-    u8g2.drawXBMP(41, 20, 16, 16, str51);
-    u8g2.drawXBMP(57, 20, 16, 16, str13);
-    u8g2.drawXBMP(73, 20, 16, 16, str14);
+    u8g2.drawXBMP(33, 20, 16, 16, str50); // 删除成功
+    u8g2.drawXBMP(49, 20, 16, 16, str51);
+    u8g2.drawXBMP(65, 20, 16, 16, str13);
+    u8g2.drawXBMP(81, 20, 16, 16, str14);
     u8g2.sendBuffer(); // 开显示
     beep(2);           // 蜂鸣器响
     delay(1000);
